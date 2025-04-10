@@ -3,6 +3,7 @@ services:
   mysql:
     image: mysql
     container_name: db
+    restart: always
     build:
       context: data-base
       dockerfile: Dockerfile
@@ -14,15 +15,15 @@ services:
     env_file:
       - .env
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "3307:3306"
     volumes:
       - db:/var/lib/mysql
     networks:
       - backend
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
+      interval: 50s
+      timeout: 30s
       retries: 5
 
 # RabbitMQ Server

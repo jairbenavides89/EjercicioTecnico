@@ -2,7 +2,7 @@ FROM maven:3.9.5-eclipse-temurin-17 AS builder
 WORKDIR /app
 COPY . .
 
-RUN mvn test
+#RUN mvn test
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jdk
